@@ -2,6 +2,31 @@
 
 Script para migrar datos desde KoboToolbox a una base de datos PostgreSQL.
 
+## Obtencion de la API Key
+Una vez iniciada sesion de Kobo, ir a la siguiente pagina: https://kf.kobotoolbox.org/#/account/security
+
+![Pagina de seguridad de Kobo](https://i.imgur.com/A9ByplD.png)
+
+En la pagina de datos del formulario obtenemos **ASSET ID** de la URL, el asset id se ve mas o menos asi: **b8XkLmjprAFcdCiYMz81Tj**
+![Datos de la encuesta](https://i.imgur.com/Mi2HdPO.png)
+
+Damos clic en Display y copiamos la API Key
+
+## Neon (PostgreSQL Online)
+Crea una cuenta en https://neon.com/
+
+1. Creamos un nuevo proyecto
+![Consola de Neon Tech](https://i.imgur.com/ryxVYKu.png)
+
+2. Ponemos un nombre al proyecto y lo creamos dando clic en "Create"
+![Formulario de creacion de proyecto](https://i.imgur.com/DdBCt6G.png)
+
+3. Pagina del proyecto
+![Dashboard del proyecto](https://i.imgur.com/h28LDoa.png)
+
+4. Obtenemos las credenciales de la base de datos dando clic en "Connect" 
+![Credenciales de postgres](https://i.imgur.com/vPTeSWn.png)
+
 ## Requisitos
 
 - Python 3.7+
@@ -28,6 +53,8 @@ cp .env.example .env
 ```
 
 2. Editar `.env` con tus credenciales:
+
+Las credenciales de Postgres las obtenemos de la [seccion de Neon](##Neon (PostgreSQL Online))
 ```
 # KoboToolbox API Configuration
 KOBOTOOLBOX_TOKEN=your_token_here
@@ -54,17 +81,17 @@ El script:
 3. Crea automáticamente una tabla PostgreSQL con el esquema inferido
 4. Inserta todos los registros
 
-## Características
+## Revisar los datos
+Para revisar los datos de la encuesta en **Tables** y ahi esta la tabla generada por el script, kobo_(ASSET_ID)
+![Datos de la encuesta](https://i.imgur.com/sXBvZtr.png)
 
-- **Inferencia automática de tipos**: Detecta automáticamente el tipo de dato apropiado para cada campo
-- **Manejo de columnas con caracteres especiales**: Soporta nombres de columna con `/` y otros caracteres especiales
-- **Manejo de datos JSON**: Convierte automáticamente objetos y arrays a formato JSONB
-- **Evita duplicados**: Usa `ON CONFLICT DO NOTHING` para no insertar duplicados
-- **Manejo de errores**: Muestra información detallada si ocurre un error
+Podemos revisar la base de datos en otro gestor o visualizador de base de datos para postgres.
 
-## Estructura de la tabla creada
+## Ejemplo en DBBeaver
+1. Creamos una nueva conexion PostgreSQL
+![Nueva conexion](https://i.imgur.com/f82XzcG.png)
 
-La tabla se nombrará como `kobo_{ASSET_UID}` y contendrá:
-- Campos estándar de KoboToolbox (`_id`, `_uuid`, `_submission_time`, etc.)
-- Todos los campos adicionales del formulario con tipos inferidos automáticamente
-- Campos especiales como `_attachments`, `_geolocation`, `_tags`, `_notes`, `_validation_status` como JSONB
+De los datos que obtuvimos en la [seccion anterior de Neon](##Neon (PostgreSQL Online)) ponemos las credenciales y damos a Finish
+![Configuracion de la conexion](https://i.imgur.com/6JuiPGz.png)
+2. Visualizacion de los datos
+![Visualizacion de los datos](https://i.imgur.com/IWFXKKn.png)
