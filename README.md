@@ -7,10 +7,11 @@ Una vez iniciada sesion de Kobo, ir a la siguiente pagina: https://kf.kobotoolbo
 
 ![Pagina de seguridad de Kobo](https://i.imgur.com/A9ByplD.png)
 
+Damos clic en Display y copiamos la API Key
+
 En la pagina de datos del formulario obtenemos **ASSET ID** de la URL, el asset id se ve mas o menos asi: **b8XkLmjprAFcdCiYMz81Tj**
 ![Datos de la encuesta](https://i.imgur.com/Mi2HdPO.png)
 
-Damos clic en Display y copiamos la API Key
 
 ## Neon (PostgreSQL Online)
 Crea una cuenta en https://neon.com/
