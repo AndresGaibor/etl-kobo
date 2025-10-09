@@ -30,8 +30,14 @@ Crea una cuenta en https://neon.com/
 
 ## Requisitos
 
-- Python 3.7+
-- Dependencias listadas en `requirements.txt`
+- Python 3.7+ [Descargar aqui](https://www.python.org/downloads/)
+- Git [Descargar aqui](https://git-scm.com/downloads)
+
+## Clonación del proyecto
+```bash
+git clone https://github.com/AndresGaibor/etl-kobo.git
+cd etl-kobo/
+```
 
 ## Instalación
 
